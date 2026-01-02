@@ -1,9 +1,11 @@
 // Package transform provides functions to transform sequences.
+// For researching how to use iterators in Go.
 package transform
 
 import "iter"
 
 // Filter returns a sequence containing only the elements that satisfy the predicate.
+// NOT USED
 func Filter[T any](seq iter.Seq[T], predicate func(T) bool) iter.Seq[T] {
 	return func(yield func(T) bool) {
 		for v := range seq {

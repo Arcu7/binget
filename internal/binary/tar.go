@@ -1,3 +1,4 @@
+// TODO: Move this into its separate package/file
 package binary
 
 import (

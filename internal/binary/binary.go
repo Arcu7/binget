@@ -1,3 +1,5 @@
+// Package binary provides functionality to find and download the latest release
+// TODO: Refactor this whole thing lol
 package binary
 
 import (
