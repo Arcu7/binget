@@ -23,7 +23,7 @@ jobs:
       - name: Linter
         uses: golangci/golangci-lint-action@v3
         with:
-          version: latest
+          version: v2.8
           args: --max-same-issues 0 --max-issues-per-linter 0
 
       # 3. Build the project using your Makefile
@@ -34,16 +34,9 @@ jobs:
       - name: Test
         run: make test
 
-      # 5. (Optional) Upload the coverage report as an artifact
+      # 5. Upload the coverage report as an artifact
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage.html
-
-      # 6. (Optional) Upload the compiled binary as an artifact
-      - name: Upload Binary
-        uses: actions/upload-artifact@v4
-        with:
-          name: binget-binary
-          path: bin/binget
