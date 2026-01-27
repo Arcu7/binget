@@ -1,0 +1,45 @@
+name: Go Build and Test
+
+# Trigger the workflow on push or pull request to main
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Setup Go environment
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.25.5"
+
+      # 3. Build the project using your Makefile
+      - name: Build
+        run: make build
+
+      # 4. Run tests and generate coverage using your Makefile
+      - name: Test
+        run: make test
+
+      # 5. (Optional) Upload the coverage report as an artifact
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.html
+
+      # 6. (Optional) Upload the compiled binary as an artifact
+      - name: Upload Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: binget-binary
+          path: bin/binget
