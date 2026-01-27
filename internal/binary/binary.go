@@ -65,7 +65,7 @@ func (f *Finder) DownloadRelease(request Request) (err error) {
 
 	slog.Info("Searching for suitable release asset", slog.String("os", request.OS), slog.Any("arch", goarch))
 
-	// Filter download link based on OS and Architecture
+	// Filter download link based on OS, architecture, and file type
 	assetsIter := slices.Values(assets)
 	asset, found := transform.FindBy(assetsIter, getCorrectAssetsCondition(request.OS, goarch))
 	if !found {
@@ -119,7 +119,7 @@ func (f *Finder) DownloadRelease(request Request) (err error) {
 
 	var binaryFile *os.File
 	switch fileType {
-	case FileTypeZip:
+	case FileTypeZIP:
 		// TODO: implement zip extraction
 	case FileTypeTarGz:
 		binaryFile, err = f.extractBinaryFromTarGz(tempFile)
@@ -244,7 +244,12 @@ func getCorrectAssetsCondition(os string, arch []string) func(asset GithubReleas
 
 		for _, a := range arch {
 			if strings.Contains(strings.ToLower(asset.BrowserDownloadURL), a) {
-				return true
+				isTarFile := strings.HasSuffix(asset.Name, ".tar.gz")
+				isZIPFile := strings.HasSuffix(asset.Name, ".zip")
+
+				if isTarFile || isZIPFile {
+					return true
+				}
 			}
 		}
 
@@ -300,7 +305,7 @@ func getFileExtension(fileName string) (FileType, error) {
 	ext := filepath.Ext(fileName)
 	switch ext {
 	case ".zip":
-		return FileTypeZip, nil
+		return FileTypeZIP, nil
 	default:
 		return "", fmt.Errorf("unsupported file extension: %s", ext)
 	}
