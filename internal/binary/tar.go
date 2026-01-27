@@ -23,7 +23,7 @@ func (f *Finder) extractBinaryFromTarGz(file *os.File) (outFile *os.File, err er
 		f.logger.Error("Failed to create gzip reader", slog.String("error", err.Error()))
 		return nil, err
 	}
-	defer gzipReader.Close()
+	defer func() { _ = gzipReader.Close() }()
 
 	tarReader := tar.NewReader(gzipReader)
 
