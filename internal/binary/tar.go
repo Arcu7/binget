@@ -52,10 +52,17 @@ func (f *Finder) extractBinaryFromTarGz(file *os.File) (outFile *os.File, err er
 				continue
 			}
 
+			f.logger.Debug("Found executable file in tar.gz archive", slog.String("file", data.header.Name))
+
+			f.logger.Info("Extracting executable from tar.gz archive", slog.String("file", data.header.Name))
+
 			outFile, err = os.Create(data.header.Name)
 			if err != nil {
+				f.logger.Error("Failed to create output file for extracted executable", slog.String("error", err.Error()))
 				return nil, err
 			}
+
+			f.logger.Debug("Extracting executable from tar.gz archive", slog.String("file", data.header.Name))
 
 			_, err = io.Copy(outFile, data.reader)
 			if err != nil {
