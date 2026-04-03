@@ -1,8 +1,8 @@
 build:
-	go build -o bin/binget cmd/cli/main.go
+	go build -o bin/binget ./cmd/cli
 
 build-optimized:
-	go build -ldflags="-s -w" -o bin/binget cmd/cli/main.go
+	go build -ldflags="-s -w" -o bin/binget ./cmd/cli
 
 .PHONY: test
 test:
