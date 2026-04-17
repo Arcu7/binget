@@ -4,10 +4,15 @@
 
 ## What It Does
 
-- Downloads release binaries from a GitHub repository URL
+- Downloads tar.gz release binaries from a GitHub repository URL
 - Supports installation for Linux and macOS (not tested) with different architectures (amd64, arm64)
 - Supports user or system install mode
 - Accepts a GitHub token to avoid API rate limits
+
+## Future Plans
+
+- Add support for ZIP releases (currently only tar.gz is supported)
+- Add support for more platforms (e.g. Windows)
 
 ## Development Requirements
 
