@@ -77,6 +77,9 @@ func main() {
 			if err != nil {
 				return err
 			}
+
+			fmt.Println("Installation completed successfully!")
+
 			return nil
 		},
 		Commands: []*cli.Command{
@@ -104,7 +107,5 @@ func main() {
 	err := cmd.Run(context.Background(), os.Args)
 	if err != nil {
 		toStdErr("", err)
-	} else {
-		fmt.Println("Installation completed successfully!")
 	}
 }
