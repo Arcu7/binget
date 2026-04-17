@@ -12,6 +12,9 @@
 ## Future Plans
 
 - Add support for ZIP releases (currently only tar.gz is supported)
+- Add an install script for installing `binget` itself
+- Add a way to specify the version to install (currently it always installs the latest release)
+- Track installed binaries and their versions for easy updates/uninstalls
 - Add support for more platforms (e.g. Windows)
 
 ## Development Requirements
