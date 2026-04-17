@@ -1,6 +1,6 @@
 # binget
 
-`binget` is a simple CLI tool I created to install binaries from GitHub releases in a quick way. I created this tool to learn more about Go and to help me easily install command-line tools that are distributed as GitHub releases, without having to manually download them with wget and extract/place them manually.
+`binget` is a simple Go CLI tool using [urfave/cli](urfave/cli) I created to install binaries from GitHub releases in a quick way. I created this tool to learn more about Go (specifically the stdlib packages like tar and new features like Go's iterator) and to help me easily install command-line tools that are distributed as GitHub releases, without having to manually download them with wget and extract/place them manually.
 
 ## What It Does
 
